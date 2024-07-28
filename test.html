@@ -2,80 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text Transformer</title>
+    <title>Bold Half Letters</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        textarea {
-            width: 100%;
+        #inputText {
+            width: 80%;
             height: 100px;
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
         }
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        #output {
+        #outputText {
             margin-top: 20px;
-            padding: 10px;
-            background: #e9ecef;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            min-height: 50px;
+            width: 80%;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Text Transformer</h1>
-        <textarea id="inputText" placeholder="Enter your text here..."></textarea>
-        <button onclick="transformText()">Transform Text</button>
-        <div id="output"></div>
-    </div>
+    <textarea id="inputText">I love you</textarea>
+    <br>
+    <button onclick="boldHalfLetters()">Bold Half Letters</button>
+    <div id="outputText"></div>
 
     <script>
-        function transformText() {
-            let inputText = document.getElementById('inputText').value;
-            let words = inputText.split(' ');
-            let transformedWords = words.map(word => {
-                if (word.length > 1) {
-                    return word.slice(0, 2).toUpperCase() + word.slice(2);
-                } else {
-                    return word.toUpperCase();
-                }
-            });
-            let transformedText = transformedWords.join(' ');
-            document.getElementById('output').innerText = transformedText;
+        function boldHalfLetters() {
+            let text = document.getElementById('inputText').value;
+            let words = text.split(' ');
+            let boldedText = words.map(word => {
+                let halfIndex = Math.ceil(word.length / 2);
+                return `<b>${word.slice(0, halfIndex)}</b>${word.slice(halfIndex)}`;
+            }).join(' ');
+
+            document.getElementById('outputText').innerHTML = boldedText;
         }
     </script>
 </body>
